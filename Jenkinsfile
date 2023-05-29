@@ -1,3 +1,24 @@
+def getAwsRegions(selectedRegion) {
+    def awsRegions = []
+    def awsSDK = new com.amazonaws.services.ec2.AmazonEC2Client()
+
+    try {
+        def describeRegionsResult = awsSDK.describeRegions()
+        describeRegionsResult.getRegions().each { region ->
+            def regionName = region.getRegionName()
+            awsRegions.add(regionName)
+            echo "AWS Region: ${regionName}"
+        }
+
+        // Print the selected region name
+        echo "Selected AWS Region: ${selectedRegion}"
+    } catch (Exception e) {
+        echo "Failed to retrieve AWS regions: ${e.getMessage()}"
+        awsRegions.add("Error")
+    }
+
+    return awsRegions
+}
 pipeline {
     agent any
 
@@ -22,26 +43,3 @@ pipeline {
         }
     }
 }
-
-def getAwsRegions(selectedRegion) {
-    def awsRegions = []
-    def awsSDK = new com.amazonaws.services.ec2.AmazonEC2Client()
-
-    try {
-        def describeRegionsResult = awsSDK.describeRegions()
-        describeRegionsResult.getRegions().each { region ->
-            def regionName = region.getRegionName()
-            awsRegions.add(regionName)
-            echo "AWS Region: ${regionName}"
-        }
-
-        // Print the selected region name
-        echo "Selected AWS Region: ${selectedRegion}"
-    } catch (Exception e) {
-        echo "Failed to retrieve AWS regions: ${e.getMessage()}"
-        awsRegions.add("Error")
-    }
-
-    return awsRegions
-}
-
