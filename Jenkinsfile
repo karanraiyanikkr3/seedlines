@@ -3,7 +3,8 @@ pipeline {
 
     parameters {
         choice(
-            choices: ['karan','Dinesh'],
+            choices: getAwsRegions(),
+            default: 'ap-south-1',
             description: 'Select an AWS region',
             name: 'AWS_REGION'
         )
@@ -14,7 +15,7 @@ pipeline {
                 stage('print  region name'){
            steps{
                script{
-                  sh "echo 'hi'"
+                  def regions = getAwsRegions(params.AWS_REGION) 
                }
             //getAwsRegions()   
             
