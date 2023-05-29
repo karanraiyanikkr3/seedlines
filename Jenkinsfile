@@ -1,4 +1,4 @@
-def getAwsRegions(selectedRegion) {
+def getAwsRegions(selectedRegion="us-east-1") {
     def awsRegions = []
     def awsSDK = new com.amazonaws.services.ec2.AmazonEC2Client()
 
