@@ -32,7 +32,7 @@ pipeline {
                 stage('print  region name'){
            steps{
                script{
-                  sh 'echo $'params.AWS_REGION''
+                  sh 'echo $AWS_REGION'
                }
             //getAwsRegions()   
             
