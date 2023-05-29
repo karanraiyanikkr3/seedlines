@@ -5,7 +5,7 @@ pipeline {
                 stage('print  region name'){
            steps{
                script{
-                  sh 'hi am karan'
+                  sh "echo 'hi am karan'"
                }
             //getAwsRegions()   
             
