@@ -3,8 +3,7 @@ pipeline {
 
     parameters {
         choice(
-            choices: getAwsRegions(),
-            defaultValue: 'ap-south-1',
+            choices: ['Select',getAwsRegions()],
             description: 'Select an AWS region',
             name: 'AWS_REGION'
         )
