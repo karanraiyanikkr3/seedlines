@@ -21,7 +21,7 @@ pipeline {
 
     parameters {
         choice(
-            choices: [getAwsRegions("us-east-1")],
+            choices: [getAwsRegions()],
             description: 'Select an AWS region',
             name: 'AWS_REGION'
         )
