@@ -1,4 +1,4 @@
-def getAwsRegions(selectedRegion="us-east-1") {
+def getAwsRegions(selectedRegion) {
     def awsRegions = []
     def awsSDK = new com.amazonaws.services.ec2.AmazonEC2Client()
 
@@ -24,7 +24,7 @@ pipeline {
 
     parameters {
         choice(
-            choices: ['Select',getAwsRegions()],
+            choices: [getAwsRegions("us-east-1")],
             description: 'Select an AWS region',
             name: 'AWS_REGION'
         )
